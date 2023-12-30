@@ -1,7 +1,5 @@
 # Check and store scores based on entity tags
 $execute store success score operation$(operation_num)$tag_accurate config.data.util if entity @s[tag=$(self_tag),tag=$(common_tag)]
-
-#Save the size of the config array
 $execute store result score operation$(operation_num)$size config.data.util run data get storage config.data:config Config
 
 # Merge and modify data in storage
@@ -14,7 +12,10 @@ $execute if score operation$(operation_num)$index config.data.util matches -1.. 
 
 # Store the new index score in storage
 $execute as @s if score operation$(operation_num)$tag_accurate config.data.util matches 1 run scoreboard players set @s config.data.linked_index $(index)
+
 $execute as @s if score operation$(operation_num)$tag_accurate config.data.util matches 1 unless score operation$(operation_num)$size config.data.util matches 1 run scoreboard players add @s config.data.linked_index 1
+
+$execute as @s if score operation$(operation_num)$tag_accurate config.data.util matches 1 if score operation$(operation_num)$size config.data.util = @s config.data.linked_index run scoreboard players set @s config.data.linked_index 0
 
 $execute store result storage config.data:operations operation$(operation_num)."index" int 1 run scoreboard players get operation$(operation_num)$index config.data.util
 
