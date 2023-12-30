@@ -28,11 +28,12 @@ execute as @s[tag=!config.data.in_operation,tag=config.data.start_operation] run
 
 # This code is commented because it doesn't making anything return, fail nor success.
 $execute as @s[tag=config.data.in_operation] if score operation$(operation_num)$assigned config.data.util matches -100 run tag @s remove config.data.in_operation
-$execute as @s[tag=config.data.in_operation] store result score operation$(operation_num)$success config.data.util run function config:util/func/check_tags {"operation_num": $(operation_num), "index": 0, "self_tag":"empty","common_tag":"empty"}
+$execute as @s[tag=config.data.in_operation] store result score operation$(operation_num)$success config.data.util run function config:util/func/check_tags {"operation_num": $(operation_num), "index": -3, "self_tag":"empty","common_tag":"empty"}
 $execute as @s[tag=config.data.in_operation] if score operation$(operation_num)$success config.data.util matches 1 run tag @s add config.operation.resulted
 $execute as @s[tag=config.data.in_operation] if score operation$(operation_num)$success config.data.util matches 1 run tag @s add config.operation.success
 $execute as @s[tag=config.data.in_operation] if score operation$(operation_num)$success config.data.util matches 1 run data remove storage config.data:operations operation$(operation_num)
 $execute as @s[tag=config.data.in_operation] if score operation$(operation_num)$success config.data.util matches 1 run scoreboard players reset operation$(operation_num)$tag_accurate config.data.util
 $execute as @s[tag=config.data.in_operation] if score operation$(operation_num)$success config.data.util matches 1 run scoreboard players reset operation$(operation_num)$assigned config.data.util
 $execute as @s[tag=config.data.in_operation] if score operation$(operation_num)$success config.data.util matches 1 run scoreboard players reset operation$(operation_num)$index config.data.util
+$execute as @s[tag=config.data.in_operation] if score operation$(operation_num)$success config.data.util matches 1 run scoreboard players reset operation$(operation_num)$size config.data.util
 $execute as @s[tag=config.data.in_operation] if score operation$(operation_num)$success config.data.util matches 1 run scoreboard players reset operation$(operation_num)$success config.data.util
